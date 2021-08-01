@@ -36,23 +36,10 @@ int main()
 
         ImGui::Begin("Sketch Editor"); // begin window
 
-    /*
-        // Background color edit
-        if (ImGui::ColorEdit3("Background color", color)) {
-            // this code gets called if color value changes, so
-            // the background color is upgraded automatically!
-            bgColor.r = static_cast<sf::Uint8>(color[0] * 255.f);
-            bgColor.g = static_cast<sf::Uint8>(color[1] * 255.f);
-            bgColor.b = static_cast<sf::Uint8>(color[2] * 255.f);
-        }
-*/
         // Window title text edit
         ImGui::InputTextMultiline("", windowTitle, 4096, ImVec2(640, 480));
 
         if (ImGui::Button("Run Sketch")) {
-            // this code gets if user clicks on the button
-            // yes, you could have written if(ImGui::InputText(...))
-            // but I do this to show how buttons work :)
             window.setTitle(windowTitle);
         }
         ImGui::End(); // end window
