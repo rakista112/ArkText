@@ -1,16 +1,14 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(ArkText VERSION 0.1.0)
 include(CTest)
-set(SFML_DIR "" CACHE STRING "The SFML Directory")
-set(SFML_INCLUDE_DIR "" CACHE STRING "The SFML Includes Directory")
-set(IMGUI_INCLUDE_DIR "" CACHE STRING "The imgui Includes Directory")
-set(IMGUI_SFML_INCLUDE_DIR "" CACHE STRING "The Imgui:SFML Directory")
+
 
 enable_testing()
 find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)
 add_executable(ArkText main.cpp imgui_draw.cpp imgui_tables.cpp imgui_widgets.cpp imgui-SFML.cpp imgui.cpp)
-target_include_directories(ArkText PUBLIC ${SFML_INCLUDE_DIR} PUBLIC ${IMGUI_INCLUDE_DIR} PUBLIC ${IMGUI_SFML_INCLUDE_DIR})
+target_include_directories(ArkText PUBLIC $ENV{CMAKE_INCLUDE_PATH})
 target_link_libraries(ArkText  sfml-system sfml-window sfml-graphics sfml-audio opengl32  )
+
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
