@@ -5,6 +5,9 @@
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
 
+#include <Ark/Ark.hpp>
+
+
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1024, 768), "");
