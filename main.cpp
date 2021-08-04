@@ -10,6 +10,9 @@
 
 int main()
 {
+    
+    Ark::State state;
+    Ark::VM vm(&state);
     sf::RenderWindow window(sf::VideoMode(1024, 768), "");
     window.setVerticalSyncEnabled(true);
     ImGui::SFML::Init(window);
@@ -43,7 +46,8 @@ int main()
         ImGui::InputTextMultiline("", windowTitle, 4096, ImVec2(640, 480));
 
         if (ImGui::Button("Run Sketch")) {
-            window.setTitle(windowTitle);
+            state.doString(windowTitle);
+            vm.run();
         }
         ImGui::End(); // end window
 
