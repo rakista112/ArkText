@@ -46,6 +46,7 @@ int main()
         ImGui::InputTextMultiline("", windowTitle, 4096, ImVec2(640, 480));
 
         if (ImGui::Button("Run Sketch")) {
+            state.reset();
             state.doString(windowTitle);
             vm.run();
         }
