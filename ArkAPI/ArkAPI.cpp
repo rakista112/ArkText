@@ -1,6 +1,6 @@
 #include "ArkAPI.hpp"
 
-namespace ArkTest
+namespace ArkText
 {
     std::unique_ptr<sf::RenderWindow> &get_window()
     {

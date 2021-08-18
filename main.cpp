@@ -6,12 +6,11 @@
 #include <SFML/Window/Event.hpp>
 
 #include <Ark/Ark.hpp>
-#include <ArkAPI.hpp>
+#include "ArkAPI.hpp"
 int main()
 {
     
     Ark::State state;
-
     // init all ark functions
     state.loadFunction("init_window", ArkText::init_window);
 
@@ -62,4 +61,5 @@ int main()
     }
 
     ImGui::SFML::Shutdown();
+    return 0;
 }
