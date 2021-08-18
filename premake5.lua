@@ -49,3 +49,5 @@ project "ArkText"
     filter "configurations:Release"
     defines { "NDEBUG" }
     optimize "On"
+
+    
