@@ -12,12 +12,13 @@ int main()
     
     Ark::State state;
     // init all ark functions
-    state.loadFunction("init_window", ArkText::init_window);
+   // state.loadFunction("init_window", ArkText::init_window);
 
     Ark::VM vm(&state);
-    sf::RenderWindow window(sf::VideoMode(1024, 768), "");
-    window.setVerticalSyncEnabled(true);
-    ImGui::SFML::Init(window);
+    ArkText::get_window().create(sf::VideoMode(1024, 768), "");
+    ArkText::get_window().setVerticalSyncEnabled(true);
+    ImGui::SFML::Init(ArkText::get_window());
+
 
     sf::Color bgColor;
 
@@ -27,20 +28,20 @@ int main()
     // for instructions on using std::string with ImGui
     char windowTitle[4096] = "ArkText";
 
-    window.setTitle(windowTitle);
-    window.resetGLStates(); // call it if you only draw ImGui. Otherwise not needed.
+    ArkText::get_window().setTitle(windowTitle);
+    ArkText::get_window().resetGLStates(); // call it if you only draw ImGui. Otherwise not needed.
     sf::Clock deltaClock;
-    while (window.isOpen()) {
+    while (ArkText::get_window().isOpen()) {
         sf::Event event;
-        while (window.pollEvent(event)) {
+        while (ArkText::get_window().pollEvent(event)) {
             ImGui::SFML::ProcessEvent(event);
 
             if (event.type == sf::Event::Closed) {
-                window.close();
+                ArkText::get_window().close();
             }
         }
 
-        ImGui::SFML::Update(window, deltaClock.restart());
+        ImGui::SFML::Update(ArkText::get_window(), deltaClock.restart());
 
         ImGui::Begin("Sketch Editor"); // begin window
 
@@ -55,9 +56,9 @@ int main()
         }
         ImGui::End(); // end window
 
-        window.clear(bgColor); // fill background with color
-        ImGui::SFML::Render(window);
-        window.display();
+        ArkText::get_window().clear(bgColor); // fill background with color
+        ImGui::SFML::Render(ArkText::get_window());
+        ArkText::get_window().display();
     }
 
     ImGui::SFML::Shutdown();

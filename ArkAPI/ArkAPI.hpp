@@ -8,8 +8,7 @@
 
 namespace ArkText
 {
-    std::unique_ptr<sf::RenderWindow>& get_window();
-    Ark::Value init_window(std::vector<Ark::Value> &n, Ark::VM *vm);
+    sf::RenderWindow& get_window();
 }
 
 #endif
