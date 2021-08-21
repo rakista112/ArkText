@@ -12,14 +12,12 @@ int main()
     
     Ark::State state;
     // init all ark functions
-   // state.loadFunction("init_window", ArkText::init_window);
+   state.loadFunction("make_circle", ArkText::make_circle);
 
     Ark::VM vm(&state);
     ArkText::get_window().create(sf::VideoMode(1024, 768), "");
     ArkText::get_window().setVerticalSyncEnabled(true);
     ImGui::SFML::Init(ArkText::get_window());
-
-
     sf::Color bgColor;
 
     float color[3] = { 0.f, 0.f, 0.f };
