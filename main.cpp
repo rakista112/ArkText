@@ -55,6 +55,7 @@ int main()
         ImGui::End(); // end window
 
         ArkText::get_window().clear(bgColor); // fill background with color
+        ArkText::draw_circles();
         ImGui::SFML::Render(ArkText::get_window());
         ArkText::get_window().display();
     }

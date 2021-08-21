@@ -17,10 +17,10 @@ namespace ArkText
     void draw_circles()
     {
         std::vector<std::unique_ptr<sf::CircleShape>>& circles = get_circle_obj();
-        std::for_each(circles.cbegin(), circles.cend(), [](std::unique_ptr<sf::CircleShape> circ)
+        for(std::size_t i=0; i < circles.size(); ++i)
         {
-            get_window().draw(circ.get());
-        });
+            get_window().draw(*circles[i]);
+        };
     }
     
     Ark::UserType::ControlFuncs* get_cfs()
