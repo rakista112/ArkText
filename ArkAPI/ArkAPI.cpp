@@ -1,5 +1,5 @@
 #include "ArkAPI.hpp"
-
+#include <algorithm>
 namespace ArkText
 {
     sf::RenderWindow &get_window()
@@ -12,6 +12,15 @@ namespace ArkText
     {
         static std::vector<std::unique_ptr<sf::CircleShape>> circleObj;
         return circleObj;
+    }
+
+    void draw_circles()
+    {
+        std::vector<std::unique_ptr<sf::CircleShape>>& circles = get_circle_obj();
+        std::for_each(circles.cbegin(), circles.cend(), [](std::unique_ptr<sf::CircleShape> circ)
+        {
+            get_window().draw(circ.get());
+        });
     }
     
     Ark::UserType::ControlFuncs* get_cfs()
