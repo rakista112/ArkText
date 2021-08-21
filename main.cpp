@@ -12,7 +12,7 @@ int main()
     
     Ark::State state;
     // init all ark functions
-   state.loadFunction("make_circle", ArkText::make_circle);
+    state.loadFunction("make_circle", ArkText::make_circle);
 
     Ark::VM vm(&state);
     ArkText::get_window().create(sf::VideoMode(1024, 768), "");
@@ -51,6 +51,8 @@ int main()
             state.doString(windowTitle);
             vm.run();
             state.reset();
+            state.loadFunction("make_circle", ArkText::make_circle);
+
         }
         ImGui::End(); // end window
 
