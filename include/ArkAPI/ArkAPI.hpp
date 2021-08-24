@@ -7,6 +7,7 @@
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <Small/Graphics/Node.hpp>
 #include <memory>
 
 namespace ArkText
