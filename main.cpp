@@ -16,6 +16,7 @@ int main()
     // init all ark functions
     std::vector<std::tuple<std::string, Ark::Value::ProcType>> functions;
     functions.emplace_back(std::make_tuple("make_circle", ArkText::make_circle));
+    functions.emplace_back(std::make_tuple("make_rect", ArkText::make_rect));
     for(auto& x : functions)
     {
         state.loadFunction(std::get<0>(x), std::get<1>(x));
@@ -58,13 +59,16 @@ int main()
             state.doString(windowTitle);
             vm.run();
             state.reset();
-            state.loadFunction("make_circle", ArkText::make_circle);
-
+            for(auto& x : functions)
+            {
+                state.loadFunction(std::get<0>(x), std::get<1>(x));
+            }
         }
         ImGui::End(); // end window
 
         ArkText::get_window().clear(bgColor); // fill background with color
         ArkText::draw_circles();
+        ArkText::draw_rects();
         ImGui::SFML::Render(ArkText::get_window());
         ArkText::get_window().display();
     }
