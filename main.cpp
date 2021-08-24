@@ -1,3 +1,5 @@
+#include <tuple>
+
 #include "imgui.h"
 #include "imgui-SFML.h"
 
@@ -12,7 +14,12 @@ int main()
     
     Ark::State state;
     // init all ark functions
-    state.loadFunction("make_circle", ArkText::make_circle);
+    std::vector<std::tuple<std::string, Ark::Value::ProcType>> functions;
+    functions.emplace_back(std::make_tuple("make_circle", ArkText::make_circle));
+    for(auto& x : functions)
+    {
+        state.loadFunction(std::get<0>(x), std::get<1>(x));
+    }
 
     Ark::VM vm(&state);
     ArkText::get_window().create(sf::VideoMode(1024, 768), "");
