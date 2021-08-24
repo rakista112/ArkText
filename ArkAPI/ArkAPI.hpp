@@ -12,6 +12,7 @@ namespace ArkText
 {
     sf::RenderWindow& get_window();
     Ark::Value make_circle(std::vector<Ark::Value> &n, Ark::VM *vm);
+    Ark::Value make_rect(std::vector<Ark::Value> &n, Ark::VM *vm);
     void draw_circles();
 
 }

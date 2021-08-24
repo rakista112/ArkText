@@ -17,9 +17,9 @@ namespace ArkText
     void draw_circles()
     {
         std::vector<std::unique_ptr<sf::CircleShape>>& circles = get_circle_obj();
-        for(std::size_t i=0; i < circles.size(); ++i)
+        for(auto& circle : circles)
         {
-            get_window().draw(*circles[i]);
+            get_window().draw(*circle);
         };
     }
     
@@ -66,5 +66,27 @@ namespace ArkText
         return v;
     }
 
+    Ark::Value make_rect(std::vector<Ark::Value> &n, Ark::VM *vm)
+    {
+        if (n.size() != 3)
+            throw std::runtime_error("draw_rect needs 3 arguments: center, radius and color");
+        if (n[0].valueType() != Ark::ValueType::List)
+            throw Ark::TypeError("draw_rect: center must be a 2-element List");
+        if (n[1].valueType() != Ark::ValueType::Number)
+            throw Ark::TypeError("draw_rect: radius must be a Number");
+        if (n[2].valueType() != Ark::ValueType::String)
+            throw Ark::TypeError("draw_rect: color must be a String");
 
+        auto vec = n[0].list();
+        sf::Vector2f vec2((float)vec[0].number(), (float)vec[1].number());
+        sf::CircleShape *shape = get_circle_obj().emplace_back(
+            std::make_unique<sf::CircleShape>((float)n[1].number())
+        ).get();
+        shape->setRadius((float)n[1].number());
+        shape->setPosition(vec2);
+        shape->setFillColor(sf::Color(100, 250, 50));
+        Ark::Value v = Ark::Value(Ark::UserType(shape));
+        v.usertypeRef().setControlFuncs(get_cfs());
+        return v;
+    }
 }
