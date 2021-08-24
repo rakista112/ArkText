@@ -1,9 +1,9 @@
-#include <ShapeBase.hpp>
+#include <ArkAPI/ShapeBase.hpp>
 
 namespace ArkText 
 {
-    void onRender(sf::RenderTarget& target, const sf::Transform& transform)
+    void ShapeBase::onRender(sf::RenderTarget& target, const sf::Transform& transform)
     {
-        
+        target.draw(*this);
     }
 }

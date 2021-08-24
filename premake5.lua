@@ -38,7 +38,7 @@ project "ArkText"
 					ark_dir .. "/include",
 					ark_dir .. "/submodules/String/include",
 					ark_dir .. "/thirdparties",
-					"include/**"}
+					"include"}
 
     files { imgui_dir .. "**.cpp", "**.h", "**.cpp"}
     location "build/ArkText"

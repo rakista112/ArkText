@@ -8,7 +8,7 @@
 #include <SFML/Window/Event.hpp>
 
 #include <Ark/Ark.hpp>
-#include "ArkAPI.hpp"
+#include <ArkAPI/ArkAPI.hpp>
 int main()
 {
     
