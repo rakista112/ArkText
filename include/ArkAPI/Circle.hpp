@@ -8,8 +8,7 @@ namespace ArkText
 {
     class Circle : public sf::CircleShape, public ShapeBase
     {
-        void setRadius (float radius);
-        float getRadius () const;
+
     };
 }
 
