@@ -1,4 +1,6 @@
 #include <ArkAPI/ArkAPI.hpp>
+#include <ArkAPI/ShapeBase.hpp>
+#include <ArkAPI/Circle.hpp>
 #include <algorithm>
 namespace ArkText
 {
@@ -8,9 +10,9 @@ namespace ArkText
         return window;
     }
 
-    std::vector<std::unique_ptr<sf::CircleShape>>& get_circle_obj()
+    std::vector<std::unique_ptr<ArkText::ShapeBase>>& get_circle_obj()
     {
-        static std::vector<std::unique_ptr<sf::CircleShape>> circleObj;
+        static std::vector<std::unique_ptr<ArkText::ShapeBase>> circleObj;
         return circleObj;
     }
 
@@ -22,7 +24,7 @@ namespace ArkText
 
     void draw_circles()
     {
-        std::vector<std::unique_ptr<sf::CircleShape>>& circles = get_circle_obj();
+        std::vector<std::unique_ptr<ArkText::ShapeBase>>& circles = get_circle_obj();
         for(auto& circle : circles)
         {
             get_window().draw(*circle);
@@ -43,14 +45,14 @@ namespace ArkText
     {
         static Ark::UserType::ControlFuncs cfs;
         cfs.ostream_func = [](std::ostream& os, const Ark::UserType& a) -> std::ostream& {
-            auto pos = a.as<sf::CircleShape>().getPosition();
+            auto pos = a.as<ArkText::ShapeBase>().getPosition();
             os << "Circle: " << pos.x << ", " << pos.y;
             return os;
         };
         cfs.deleter = [](void* data) {
-            std::vector<std::unique_ptr<sf::CircleShape>>& circles = get_circle_obj();
+            std::vector<std::unique_ptr<ArkText::ShapeBase>>& circles = get_circle_obj();
             auto it = std::find_if(circles.begin(), circles.end(), [data](const auto& val) -> bool {
-                return val.get() == static_cast<sf::CircleShape*>(data);
+                return val.get() == static_cast<ArkText::ShapeBase*>(data);
             });
             if (it != circles.end())
                 circles.erase(it);
@@ -88,8 +90,8 @@ namespace ArkText
 
         auto vec = n[0].list();
         sf::Vector2f vec2((float)vec[0].number(), (float)vec[1].number());
-        sf::CircleShape *shape = get_circle_obj().emplace_back(
-            std::make_unique<sf::CircleShape>((float)n[1].number())
+        ArkText::ShapeBase *shape = get_circle_obj().emplace_back(
+            std::make_unique<ArkText::Circle>()
         ).get();
         shape->setRadius((float)n[1].number());
         shape->setPosition(vec2);

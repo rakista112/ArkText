@@ -6,7 +6,7 @@
 
 namespace ArkText 
 {
-    class ShapeBase : public sf::Shape, public sgl::Graphics::Node
+    class ShapeBase : virtual public sf::Shape, public sgl::Graphics::Node
     {
         public:
             ShapeBase();
